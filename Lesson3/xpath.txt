@@ -1,0 +1,4 @@
+Input для введення пошукового запиту - //input[@id = "text-input-what"]
+
+ Input для введення регіону -  //input[@id = "text-input-where"]
+ Кнопка пошуку -  //button[@class = "yosegi-InlineWhatWhere-primaryButton"]
