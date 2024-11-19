@@ -1,0 +1,32 @@
+[
+    {
+        "firstName": "Tom",
+        "lastName": "Smith",
+        "weight": 80,
+        "isMale": true
+    },
+    {
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "weight": 92,
+        "isMale": false
+    },
+    {
+        "firstName": "Bob",
+        "lastName": "Williams",
+        "weight": 75,
+        "isMale": true
+    },
+    {
+        "firstName": "Emma",
+        "lastName": "Brown",
+        "weight": 88,
+        "isMale": false
+    },
+    {
+        "firstName": "David",
+        "lastName": "Jones",
+        "weight": 107,
+        "isMale": true
+    }
+]
