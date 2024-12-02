@@ -19,8 +19,8 @@ def parser():
             url = job.find_element(By.TAG_NAME,'a').get_attribute('href')
             title = job.find_element(By.TAG_NAME, 'h3').text
             results.append({
-                'url': url,
-                'title': title
+                'title': title,
+                'url': url
             })
 
     driver.quit()
