@@ -69,6 +69,18 @@ def write_sql(data: list) -> None:
     conn.commit()
     conn.close()
 
+def read_sql() -> None:
+    filename = 'output.db'
+    conn = sqlite3.connect(filename)
+    cursor = conn.cursor()
+    sql = """
+    SELECT * FROM People 
+    """
+
+    rows = conn.execute(sql).fetchall()
+    print(rows)
+
+
 if __name__ == '__main__':
     example = [
         ["Tom", "Smith", 80, True],
@@ -81,3 +93,4 @@ if __name__ == '__main__':
     write_json(example)
     write_xml(example)
     write_sql(example)
+    read_sql()

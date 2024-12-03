@@ -9,19 +9,6 @@ shops = []
 urls = []
 data = []
 unique_lists = []
-def parse_page(url: str):
-    user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36'
-    r = requests.get(url, headers={'user-agent': user_agent})
-    soup = BeautifulSoup(r.text, 'lxml')
-    lines = soup.findAll('div',{'class':'list__item'})
-    for line in lines:
-        price = line.find('span',{'class':'price__value'}).text.replace('\u00a0', '')
-        prices.append(price)
-        shop = line.find('a',{'class':'shop__title'}).text.strip(' \t\n')
-        shop = shop.encode().decode('utf-8')
-        shops.append(shop)
-        url = 'https://hotline.ua' + line.find('a',{'class':'price-block__buy-shop'}).get('href')
-        urls.append(url)
 
 def write_sql() -> None:
     filename = 'data.db'
@@ -57,11 +44,24 @@ def parse_hotline():
     soup = BeautifulSoup(response.text, 'lxml')
     page = soup.find('div', {'class':'list-body__content'})
     cards = page.findAll('div',{'class':'list-item--row'})
+    
     for card in cards:
         name = card.find('a',{'class':'item-title'}).text.strip(' \t\n\r')
-        names.append(name)
         url = 'https://hotline.ua' + card.find('a',{'class':'btn--orange'}).get('href')
-        page = parse_page(url)
+#        page = parse_page(url)
+#       pages.append(url)
+        r = requests.get(url, headers={'user-agent': user_agent})
+        soup = BeautifulSoup(r.text, 'lxml')
+        lines = soup.findAll('div',{'class':'list__item'})
+        for line in lines:
+            price = line.find('span',{'class':'price__value'}).text.replace('\u00a0', '')
+            names.append(name)
+            prices.append(price)
+            shop = line.find('a',{'class':'shop__title'}).text.strip(' \t\n')
+            shop = shop.encode().decode('utf-8')
+            shops.append(shop)
+            url = 'https://hotline.ua' + line.find('a',{'class':'price-block__buy-shop'}).get('href')
+            urls.append(url)
         for name, url, shop, price in zip(names,urls,shops,prices):
             new = []
             new.append(name)
@@ -76,5 +76,13 @@ def parse_hotline():
     write_sql()
 
 
+
+
+
+
 if __name__ == '__main__':
     parse_hotline()
+
+
+
+

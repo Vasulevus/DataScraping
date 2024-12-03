@@ -3,15 +3,3 @@ Input для введення пошукового запиту - //input[@id = 
  Input для введення регіону -  //input[@id = "text-input-where"]
  Кнопка пошуку -  //button[@class = "yosegi-InlineWhatWhere-primaryButton"]
 
-
-
-concat(triggerOutputs()?['body/{Path}']
-
-
-
-@{triggerOutputs()?['body/{Path}']}@{triggerOutputs()?['body/{FilenameWithExtension}']}
-
-concat(@{triggerOutputs()?['body/{Path}']},@{triggerOutputs()?['body/{FilenameWithExtension}']})
-
-
-concat(triggerOutputs()?['body/{Path}'],triggerOutputs()?['body/{FilenameWithExtension}'])
